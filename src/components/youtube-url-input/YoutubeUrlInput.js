@@ -24,13 +24,13 @@ class YoutubeUrlInput extends Component {
             validationState: null,
             url: url
         });
-        this.onUrlChanged(url);
+        this.onUrlChanged && this.onUrlChanged(url);
         //'https://www.youtube.com/embed/' + match[2] + '?autoplay=1&enablejsapi=1'
     }
     validateUrl(url) {
         if (url !== undefined || url !== '') {
             let videoId = this.getVideoId(url)
-            if (videoId && videoId.length == 11) {
+            if (videoId && videoId.length === 11) {
                 return true;
             } else {
                 return false;
@@ -47,7 +47,7 @@ class YoutubeUrlInput extends Component {
         return (
             <FormGroup className="url-input" validationState={this.state.validationState}>
                 <FormControl type="text" placeholder={this.props.placeholder} value={this.state.url} onChange={this.urlChanged} />
-                <HelpBlock>Youtube url is invalid.</HelpBlock>
+                <HelpBlock>Youtube url is invalid</HelpBlock>
             </FormGroup>
         );
     }

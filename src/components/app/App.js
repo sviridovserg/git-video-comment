@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Header text="YouTube2Git" className="app-header" />
+        <Header text="convert youtube url to markdown" className="app-header" />
 
         <div className="app-content container">
           <div className="app-row">
@@ -36,7 +36,7 @@ class App extends Component {
           </div>
           <div className="app-row">
             <Panel header="Markdown">
-              Panel content
+
             </Panel>
           </div>
         </div>
