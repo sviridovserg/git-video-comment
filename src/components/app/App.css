@@ -1,11 +1,26 @@
 .app {
-    text-align: center;
+
 }
 
 .app-intro {
   font-size: large;
 }
 
-.app-header {
-  padding-bottom: 36px;
+
+.app-content {
+  margin-top: var(--sp-2);
+}
+
+.app-row {
+  margin-top: var(--sp-1);
+}
+
+.convert-btn {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .convert-btn {
+    width: initial;
+  }
 }

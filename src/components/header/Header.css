@@ -13,10 +13,21 @@
 }
 
 .header-logo {
-    height: 100px;
+    height: 80px;
 }
 
 .header-logo.arrow {
     height: 40px;
-    padding: 0 var(--sp-3);
+    padding: 0 var(--sp-1);
+}
+
+@media (min-width: 768px) {
+    .header-logo.arrow {
+        padding: 0 var(--sp-3);
+    }
+
+    .header-logo {
+        height: 100px;
+    }
+
 }

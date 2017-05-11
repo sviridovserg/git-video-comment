@@ -1,0 +1,7 @@
+.url-input.has-error input {
+    background-image: linear-gradient(#009688, #009688), linear-gradient(#a94442, #a94442);
+}
+
+.url-input.has-error .help-block {
+    display: block;
+}
