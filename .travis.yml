@@ -1,4 +1,5 @@
 install:
+  - npm cache clean
   - npm install
 build:
   - npm run test
