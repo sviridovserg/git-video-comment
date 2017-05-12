@@ -1,25 +1,55 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from '../header/Header'
-import YoutubeUrlInput from '../youtube-url-input/YoutubeUrlInput'
+import YoutubeConvertParams from '../youtube-convert-params/YoutubeConvertParams'
+import { getVideoId } from '../../utils/YoutubeUrl'
 import { Button, Panel } from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.linkChanged = this.linkChanged.bind(this);
+    this.youtubeUrlChanged = this.youtubeUrlChanged.bind(this);
+    this.youtubeUrlIsValidChanged = this.youtubeUrlIsValidChanged.bind(this);
+    this.videoTitleChaged = this.videoTitleChaged.bind(this);
+    this.altTextChanged = this.altTextChanged.bind(this);
     this.convert = this.convert.bind(this);
     this.state = {
-      link: ''
+      url: '',
+      isUrlValid: true,
+      urlMarkdown: null,
+      videoId: null,
+      altText: '',
+      videoTitle: ''
     }
   }
-  linkChanged(e) {
+  youtubeUrlChanged(url) {
     this.setState({
-      link: e.target.value
+      url: url
     })
   }
+  youtubeUrlIsValidChanged(isValid) {
+    this.setState({
+      isUrlValid: isValid
+    });
+  }
+  videoTitleChaged(title) {
+    this.setState({
+      videoTitle: title
+    });
+  }
+  altTextChanged(altText) {
+    this.setState({
+      altText: altText
+    });
+  }
   convert() {
-    alert(this.state.link);
+    let videoId = getVideoId(this.state.url);
+    let altText = this.state.altText || '';
+    let videoTitle = this.state.videoTitle || '';
+    this.setState({
+      videoId: videoId,
+      urlMarkdown: `[![${altText}](http://img.youtube.com/vi/${videoId}/0.jpg)](http://www.youtube.com/watch?v=${videoId} "${videoTitle}")`
+    });
   }
   render() {
     return (
@@ -27,17 +57,34 @@ class App extends Component {
         <Header text="convert youtube url to markdown" className="app-header" />
 
         <div className="app-content container">
-          <div className="app-row">
-            <YoutubeUrlInput placeholder="Youtube Video Link" />
-
-          </div>
+          <YoutubeConvertParams
+            url={this.state.url}
+            isUrlValid={this.state.isUrlValid}
+            onYoutubeUrlChanged={this.youtubeUrlChanged}
+            altText={this.state.altText}
+            title={this.state.videoTitle}
+            onTitleChanged={this.videoTitleChaged}
+            onAltTextChanged={this.altTextChanged} />
           <div className="app-row text-center">
-            <Button bsStyle="primary" className="btn-raised convert-btn" onClick={this.convert}>Convert To Markdown</Button>
+            <Button bsStyle="primary" className="btn-raised convert-btn" disabled={!this.state.isUrlValid} onClick={this.convert}>Convert To Markdown</Button>
           </div>
           <div className="app-row">
             <Panel header="Markdown">
-
+              {this.state.urlMarkdown}
             </Panel>
+          </div>
+           <div className="app-row">
+              <Panel header="View">
+                {
+                  this.state.videoId ? (
+                  <div className="text-center">
+                    <a href={`http://www.youtube.com/watch?v=${this.state.videoId}`} title={this.state.videoTitle}>
+                      <img src={`http://img.youtube.com/vi/${this.state.videoId}/0.jpg`} alt={this.state.altText}/>
+                    </a>
+                  </div>
+                  ) : null
+                }
+              </Panel>
           </div>
         </div>
       </div>
