@@ -21,10 +21,10 @@ class YoutubeUrlInput extends Component {
 
         if (this.props.isValid !== isValid) {
             this.props.onIsValidChanged && this.props.onIsValidChanged(isValid);
-            this.setState({
-                validationState: this.getValidationStateValue(isValid)
-            });
         }
+        this.setState({
+            validationState: this.getValidationStateValue(isValid)
+        });
         this.props.onUrlChanged && this.props.onUrlChanged(url);
     }
     render() {
