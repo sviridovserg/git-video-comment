@@ -1,5 +1,6 @@
 install:
   - npm cache clean
+  - npm install npm@latest -g
   - npm install
 build:
   - npm run test
