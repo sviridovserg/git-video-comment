@@ -1,4 +1,11 @@
 
+
+const getVideoId = (url) => {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    return match && match[2];
+}
+
 const isYoutubeUrlValid = (url) => {
     if (url !== undefined || url !== '') {
         let videoId = getVideoId(url)
@@ -9,12 +16,6 @@ const isYoutubeUrlValid = (url) => {
         }
     }
     return false;
-}
-
-const getVideoId = (url) => {
-    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    return match && match[2];
 }
 
 export {

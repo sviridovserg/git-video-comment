@@ -12,6 +12,7 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "eslint-plugin-react-app": "^1.0.2",
     "react-scripts": "0.9.5"
   },
   "scripts": {

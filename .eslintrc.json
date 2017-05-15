@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "plugin:react-app/recommended"
+  ],
+  "rules": {
+      "no-useless-escape": 0,
+      "no-template-curly-in-string": 0
+  }
+}
