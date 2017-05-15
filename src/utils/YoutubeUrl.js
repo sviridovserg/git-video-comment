@@ -1,8 +1,8 @@
 
 
 const getVideoId = (url) => {
-    //var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
-    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch?v=|&v=|?v=)([^#&?]*).*/;
+    /*eslint no-useless-escape: 0*/
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
     return match && match[2];
 }
