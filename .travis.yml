@@ -6,9 +6,10 @@ install:
   - npm cache clean
   - npm install npm@latest -g
   - npm install
-build:
+script:
   - npm run test
   - npm run build
+
 before_deploy:
   - cd build
 deploy:
