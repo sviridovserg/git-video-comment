@@ -9,3 +9,5 @@ install:
 build:
   - npm run test
   - npm run build
+deploy:
+  provider: azure_web_apps
