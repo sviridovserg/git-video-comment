@@ -53,39 +53,42 @@ class Converter extends Component {
     }
     render() {
         return (
-            <div className="app">
-                <Header text="{props.header}" className="app-header" />
+            <div className="converter">
+                <Header text={this.props.header} className="converter-header" />
 
-                <div className="app-content container">
-                <YoutubeConvertParams
-                    url={this.state.url}
-                    isUrlValid={this.state.isUrlValid}
-                    onYoutubeUrlChanged={this.youtubeUrlChanged}
-                    altText={this.state.altText}
-                    title={this.state.videoTitle}
-                    onTitleChanged={this.videoTitleChaged}
-                    onAltTextChanged={this.altTextChanged} />
-                <div className="app-row text-center">
-                    <Button bsStyle="primary" className="btn-raised convert-btn" disabled={!this.state.isUrlValid} onClick={this.convert}>Convert To Markdown</Button>
-                </div>
-                <div className="app-row">
-                    <Panel header="Markdown">
-                    {this.state.urlMarkdown}
-                    </Panel>
-                </div>
-                <div className="app-row">
-                    <Panel header="Preview">
-                        {
-                        this.state.videoId ? (
-                        <div className="text-center">
-                            <a href={`http://www.youtube.com/watch?v=${this.state.videoId}`} title={this.state.videoTitle}>
-                            <img className="result-preview" src={`http://img.youtube.com/vi/${this.state.videoId}/0.jpg`} alt={this.state.altText}/>
-                            </a>
-                        </div>
-                        ) : null
-                        }
-                    </Panel>
-                </div>
+                <div className="converter-content container">
+                    <YoutubeConvertParams
+                        url={this.state.url}
+                        isUrlValid={this.state.isUrlValid}
+                        onYoutubeUrlChanged={this.youtubeUrlChanged}
+                        altText={this.state.altText}
+                        title={this.state.videoTitle}
+                        onTitleChanged={this.videoTitleChaged}
+                        onAltTextChanged={this.altTextChanged} />
+                    <div className="converter-row text-center">
+                        <Button bsStyle="primary" className="btn-raised convert-btn" disabled={!this.state.isUrlValid} onClick={this.convert}>Convert To Markdown</Button>
+                    </div>
+                    <div className="converter-row">
+                        <Panel header="Markdown">
+                        {this.state.urlMarkdown}
+                        </Panel>
+                    </div>
+                    <div className="converter-row">
+                        <Panel header="Preview">
+                            {
+                            this.state.videoId ? (
+                            <div className="text-center">
+                                <a href={`http://www.youtube.com/watch?v=${this.state.videoId}`} title={this.state.videoTitle}>
+                                <img className="result-preview" src={`http://img.youtube.com/vi/${this.state.videoId}/0.jpg`} alt={this.state.altText}/>
+                                </a>
+                            </div>
+                            ) : null
+                            }
+                        </Panel>
+                    </div>
+                    <div>
+                        {this.props.children}
+                    </div>
                 </div>
             </div>
             );

@@ -1,10 +1,23 @@
 import React from 'react';
 import './App.css';
-import Converter from '../converter/Converter'
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
+import GitHubConverter from '../converters/GitHubConverter';
+
+const Test = () => {
+  return (<h1>TEST</h1>);
+}
 
 const App = (props) => {
     return (
-        <Converter header="convert youtube url to markdown" />
+        <Router>
+          <div>
+            <Route exact path="/" component={GitHubConverter} />
+            <Route path="/github" component={GitHubConverter} />
+          </div>
+        </Router>
     );
 };
 
