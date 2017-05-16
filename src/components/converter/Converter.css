@@ -2,12 +2,12 @@
   margin-top: var(--sp-2);
 }
 
-.converter-row {
-  margin-top: var(--sp-1);
-}
-
 .convert-btn {
   width: 100%;
+}
+
+.converter-footer {
+  border-left-color: var(--success);
 }
 
 .result-preview {

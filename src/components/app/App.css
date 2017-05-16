@@ -1,3 +1,11 @@
 .app {
 
 }
+
+input.form-control:placeholder-shown::placeholder {
+  color: #aaa;
+}
+
+.app-row {
+  margin-top: var(--sp-1);
+}

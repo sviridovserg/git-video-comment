@@ -52,6 +52,11 @@ class Converter extends Component {
         });
     }
     render() {
+        let footer = this.props.children && (
+            <blockquote className="converter-footer">
+                {this.props.children}
+            </blockquote>
+        );
         return (
             <div className="converter">
                 <Header text={this.props.header} className="converter-header" />
@@ -65,15 +70,15 @@ class Converter extends Component {
                         title={this.state.videoTitle}
                         onTitleChanged={this.videoTitleChaged}
                         onAltTextChanged={this.altTextChanged} />
-                    <div className="converter-row text-center">
+                    <div className="app-row text-center">
                         <Button bsStyle="primary" className="btn-raised convert-btn" disabled={!this.state.isUrlValid} onClick={this.convert}>Convert To Markdown</Button>
                     </div>
-                    <div className="converter-row">
+                    <div className="app-row">
                         <Panel header="Markdown">
                         {this.state.urlMarkdown}
                         </Panel>
                     </div>
-                    <div className="converter-row">
+                    <div className="app-row">
                         <Panel header="Preview">
                             {
                             this.state.videoId ? (
@@ -87,7 +92,7 @@ class Converter extends Component {
                         </Panel>
                     </div>
                     <div>
-                        {this.props.children}
+                        {footer}
                     </div>
                 </div>
             </div>
