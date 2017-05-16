@@ -1,0 +1,22 @@
+.converter-content {
+  margin-top: var(--sp-2);
+}
+
+.converter-row {
+  margin-top: var(--sp-1);
+}
+
+.convert-btn {
+  width: 100%;
+}
+
+.result-preview {
+  width: 100%;
+  max-width: 600px;
+}
+
+@media (min-width: 768px) {
+  .convert-btn {
+    width: initial;
+  }
+}
