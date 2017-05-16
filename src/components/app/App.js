@@ -6,10 +6,6 @@ import {
 } from 'react-router-dom';
 import GitHubConverter from '../converters/GitHubConverter';
 
-const Test = () => {
-  return (<h1>TEST</h1>);
-}
-
 const App = (props) => {
     return (
         <Router>
