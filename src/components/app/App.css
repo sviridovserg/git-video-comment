@@ -19,6 +19,11 @@
   width: 100%;
 }
 
+.result-preview {
+  width: 100%;
+  max-width: 600px;
+}
+
 @media (min-width: 768px) {
   .convert-btn {
     width: initial;

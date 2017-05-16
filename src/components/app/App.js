@@ -74,12 +74,12 @@ class App extends Component {
             </Panel>
           </div>
            <div className="app-row">
-              <Panel header="View">
+              <Panel header="Preview">
                 {
                   this.state.videoId ? (
                   <div className="text-center">
                     <a href={`http://www.youtube.com/watch?v=${this.state.videoId}`} title={this.state.videoTitle}>
-                      <img src={`http://img.youtube.com/vi/${this.state.videoId}/0.jpg`} alt={this.state.altText}/>
+                      <img className="result-preview" src={`http://img.youtube.com/vi/${this.state.videoId}/0.jpg`} alt={this.state.altText}/>
                     </a>
                   </div>
                   ) : null
