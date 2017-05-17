@@ -14,32 +14,32 @@ class Converter extends Component {
         this.altTextChanged = this.altTextChanged.bind(this);
         this.convert = this.convert.bind(this);
         this.state = {
-        url: '',
-        isUrlValid: true,
-        urlMarkdown: null,
-        videoId: null,
-        altText: '',
-        videoTitle: ''
+            url: '',
+            isUrlValid: true,
+            urlMarkdown: null,
+            videoId: null,
+            altText: '',
+            videoTitle: ''
         }
     }
     youtubeUrlChanged(url) {
         this.setState({
-        url: url
+         url: url
         })
     }
     youtubeUrlIsValidChanged(isValid) {
         this.setState({
-        isUrlValid: isValid
+            isUrlValid: isValid
         });
     }
     videoTitleChaged(title) {
         this.setState({
-        videoTitle: title
+            videoTitle: title
         });
     }
     altTextChanged(altText) {
         this.setState({
-        altText: altText
+            altText: altText
         });
     }
     convert() {
