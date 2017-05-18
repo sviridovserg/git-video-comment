@@ -7,11 +7,14 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "bootstrap-material-design": "^0.5.10",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "eslint-plugin-react-app": "^1.0.2",
