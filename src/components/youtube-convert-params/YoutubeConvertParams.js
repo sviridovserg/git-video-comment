@@ -1,11 +1,12 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { FormControl } from 'react-bootstrap';
 
-import { changeAltText, changeVideoTitle, changeURL, changeAreParamsValid } from '../../actions'
+import { changeAltText, changeVideoTitle, changeURL, changeAreParamsValid } from '../../actions';
 
-import YoutubeUrlInput from '../youtube-url-input/YoutubeUrlInput'
-import './YoutubeConvertParams.css'
+import YoutubeUrlInput from '../youtube-url-input/YoutubeUrlInput';
+import './YoutubeConvertParams.css';
 
 const YoutubeConvertParams = (props) => {
     return (
@@ -27,6 +28,17 @@ const YoutubeConvertParams = (props) => {
             </div>
         </div>
     );
+};
+
+YoutubeConvertParams.propTypes = {
+    url: PropTypes.string.isRequired,
+    altText: PropTypes.string.isRequired,
+    videoTitle: PropTypes.string.isRequired,
+    isUrlValid: PropTypes.bool.isRequired,
+    onVideoTitleChanged: PropTypes.func.isRequired,
+    onAltTextChanged: PropTypes.func.isRequired,
+    onUrlChanged: PropTypes.func.isRequired,
+    onIsValidChanged: PropTypes.func.isRequired
 };
 
 

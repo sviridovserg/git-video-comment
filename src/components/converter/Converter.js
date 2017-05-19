@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
+import { Button } from 'react-bootstrap';
+
 import Header from '../header/Header'
 import YoutubeConvertParams from '../youtube-convert-params/YoutubeConvertParams'
+import YoutubeConversionResult from '../youtube-conversion-result/YoutubeConversionResult'
 import { getVideoId } from '../../utils/YoutubeUrl'
-import { Button, Panel } from 'react-bootstrap';
 import './Converter.css'
 
 class Converter extends Component {
@@ -47,8 +49,8 @@ class Converter extends Component {
         let altText = this.state.altText || '';
         let videoTitle = this.state.videoTitle || '';
         this.setState({
-        videoId: videoId,
-        urlMarkdown: `[![${altText}](http://img.youtube.com/vi/${videoId}/0.jpg)](http://www.youtube.com/watch?v=${videoId} "${videoTitle}")`
+            videoId: videoId,
+            urlMarkdown: `[![${altText}](http://img.youtube.com/vi/${videoId}/0.jpg)](http://www.youtube.com/watch?v=${videoId} "${videoTitle}")`
         });
     }
     render() {
@@ -62,35 +64,11 @@ class Converter extends Component {
                 <Header text={this.props.header} className="converter-header" />
 
                 <div className="converter-content container">
-                    <YoutubeConvertParams
-                        url={this.state.url}
-                        isUrlValid={this.state.isUrlValid}
-                        onYoutubeUrlChanged={this.youtubeUrlChanged}
-                        altText={this.state.altText}
-                        title={this.state.videoTitle}
-                        onTitleChanged={this.videoTitleChaged}
-                        onAltTextChanged={this.altTextChanged} />
+                    <YoutubeConvertParams />
                     <div className="app-row text-center">
                         <Button bsStyle="primary" className="btn-raised convert-btn" disabled={!this.state.isUrlValid} onClick={this.convert}>Convert To Markdown</Button>
                     </div>
-                    <div className="app-row">
-                        <Panel header="Markdown">
-                        {this.state.urlMarkdown}
-                        </Panel>
-                    </div>
-                    <div className="app-row">
-                        <Panel header="Preview">
-                            {
-                            this.state.videoId ? (
-                            <div className="text-center">
-                                <a href={`http://www.youtube.com/watch?v=${this.state.videoId}`} title={this.state.videoTitle}>
-                                <img className="result-preview" src={`http://img.youtube.com/vi/${this.state.videoId}/0.jpg`} alt={this.state.altText}/>
-                                </a>
-                            </div>
-                            ) : null
-                            }
-                        </Panel>
-                    </div>
+                    <YoutubeConversionResult videoId={this.props.videId} altText={this.props.altText} videoTitle={this.props.videoTitle}/>
                     <div>
                         {footer}
                     </div>
