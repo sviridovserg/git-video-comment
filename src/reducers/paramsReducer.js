@@ -1,7 +1,7 @@
-import { CHANGE_LINK, CHANGE_ALT_TEXT, CHANGE_VIDEO_TITLE, CHANGE_ARE_PARAMS_VALID } from '../actions/index'
+import { CHANGE_URL, CHANGE_ALT_TEXT, CHANGE_VIDEO_TITLE, CHANGE_ARE_PARAMS_VALID } from '../actions/index'
 
 const initialState = {
-    link: '',
+    url: '',
     altText: '',
     videoTitle: '',
     isValid: true
@@ -9,8 +9,8 @@ const initialState = {
 
 const paramsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CHANGE_LINK:
-            return { ...state, ...{ link: action.link }};
+        case CHANGE_URL:
+            return { ...state, ...{ url: action.url }};
         case CHANGE_ALT_TEXT:
             return { ...state, ...{ altText: action.text }};
         case CHANGE_VIDEO_TITLE:
