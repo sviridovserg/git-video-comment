@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
-import YoutubeUrlInput from '../youtube-url-input/YoutubeUrlInput'
+import { connect } from 'react-redux'
 import { FormControl } from 'react-bootstrap';
+
+import { changeAltText, changeVideoTitle, changeURL, changeAreParamsValid } from '../../actions'
+
+import YoutubeUrlInput from '../youtube-url-input/YoutubeUrlInput'
 import './YoutubeConvertParams.css'
 
 class YoutubeConvertParams extends Component {
@@ -27,10 +31,10 @@ class YoutubeConvertParams extends Component {
                 </div>
                 <div className="app-row row">
                     <div className="col-xs-6">
-                        <FormControl type="text" placeholder="Image Title" value={this.props.title} onChange={this.titleChanged} />
+                        <FormControl type="text" placeholder="Image Title" value={this.props.videoTitle} onChange={this.props.onVideoTitleChanged}/>
                     </div>
                     <div className="col-xs-6">
-                        <FormControl type="text" placeholder="Alt Text" value={this.props.altText} onChange={this.altTextChanged} />
+                        <FormControl type="text" placeholder="Image Title" value={this.props.altText} onChange={this.props.onAltTextChanged}/>
                     </div>
                 </div>
             </div>
@@ -38,4 +42,22 @@ class YoutubeConvertParams extends Component {
     }
 }
 
-export default YoutubeConvertParams;
+const mapStateToPros = ({params}) => {
+    return {
+        altText: params.altText,
+        videoTitle: params.videoTitle,
+        url: params.link,
+        isUrlValid: params.isValid
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onVideoTitleChanged: (e) => dispatch(changeVideoTitle(e.target.value)),
+        onAltTextChanged:  (e) => dispatch(changeAltText(e.target.value)),
+        onUrlChanged: (url) => dispatch(changeURL(url)),
+        onIsValidChanged: (isValid) => dispatch(changeAreParamsValid(isValid))
+    }
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(YoutubeConvertParams);
