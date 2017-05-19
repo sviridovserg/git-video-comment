@@ -1,49 +1,23 @@
 import React, {Component} from 'react'
 import { Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
 
 import Header from '../header/Header'
 import YoutubeConvertParams from '../youtube-convert-params/YoutubeConvertParams'
 import YoutubeConversionResult from '../youtube-conversion-result/YoutubeConversionResult'
 import { getVideoId } from '../../utils/YoutubeUrl'
+import { extractVideoId } from '../../actions'
 import './Converter.css'
 
 class Converter extends Component {
     constructor(props) {
         super(props);
-        this.youtubeUrlChanged = this.youtubeUrlChanged.bind(this);
-        this.youtubeUrlIsValidChanged = this.youtubeUrlIsValidChanged.bind(this);
-        this.videoTitleChaged = this.videoTitleChaged.bind(this);
-        this.altTextChanged = this.altTextChanged.bind(this);
+
         this.convert = this.convert.bind(this);
-        this.state = {
-            url: '',
-            isUrlValid: true,
-            urlMarkdown: null,
-            videoId: null,
-            altText: '',
-            videoTitle: ''
-        }
+
     }
-    youtubeUrlChanged(url) {
-        this.setState({
-         url: url
-        })
-    }
-    youtubeUrlIsValidChanged(isValid) {
-        this.setState({
-            isUrlValid: isValid
-        });
-    }
-    videoTitleChaged(title) {
-        this.setState({
-            videoTitle: title
-        });
-    }
-    altTextChanged(altText) {
-        this.setState({
-            altText: altText
-        });
-    }
+
     convert() {
         let videoId = getVideoId(this.state.url);
         let altText = this.state.altText || '';
@@ -66,9 +40,9 @@ class Converter extends Component {
                 <div className="converter-content container">
                     <YoutubeConvertParams />
                     <div className="app-row text-center">
-                        <Button bsStyle="primary" className="btn-raised convert-btn" disabled={!this.state.isUrlValid} onClick={this.convert}>Convert To Markdown</Button>
+                        <Button bsStyle="primary" className="btn-raised convert-btn" disabled={!this.props.isUrlValid} onClick={this.convert}>Convert To Markdown</Button>
                     </div>
-                    <YoutubeConversionResult videoId={this.props.videId} altText={this.props.altText} videoTitle={this.props.videoTitle}/>
+                    <YoutubeConversionResult videoId={this.props.videoId} altText={this.props.altText} videoTitle={this.props.videoTitle}/>
                     <div>
                         {footer}
                     </div>
@@ -78,4 +52,19 @@ class Converter extends Component {
     }
 }
 
-export default Converter;
+const mapStateToProps = (state) => {
+    return {
+        altText: state.params.altText,
+        videoTitle: state.params.videoTitle,
+        videoId: state.result.videoId,
+        isUrlValid: state.params.isValid
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        convert: () => dispatch(extractVideoId())
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Converter);

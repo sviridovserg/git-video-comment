@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
-import paramsReducer from './paramsReducer';
+import params from './paramsReducer';
+import result from './resultReducer';
 
-const app = combineReducers({ params: paramsReducer });
+const app = combineReducers({ params, result });
 
 export default app;
 
