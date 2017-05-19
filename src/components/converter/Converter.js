@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import Header from '../header/Header';
 import YoutubeConvertParams from '../youtube-convert-params/YoutubeConvertParams';
 import YoutubeConversionResult from '../youtube-conversion-result/YoutubeConversionResult';
-import { extractVideoId } from '../../actions';
+import { extractVideoId, changeAreParamsValid } from '../../actions';
+import { isYoutubeUrlValid } from '../../utils/YoutubeUrl';
 import './Converter.css';
 
 const Converter = (props) => {
@@ -54,7 +55,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onConvert: (url) => dispatch(extractVideoId(url))
+        onConvert: (url) => {
+            isYoutubeUrlValid(url) ? dispatch(extractVideoId(url)) : dispatch(changeAreParamsValid(false));
+        }
     };
 };
 
