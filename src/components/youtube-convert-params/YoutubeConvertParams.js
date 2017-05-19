@@ -23,7 +23,7 @@ const YoutubeConvertParams = (props) => {
                     <FormControl type="text" placeholder="Image Title" value={props.videoTitle} onChange={props.onVideoTitleChanged}/>
                 </div>
                 <div className="col-xs-6">
-                    <FormControl type="text" placeholder="Image Title" value={props.altText} onChange={props.onAltTextChanged}/>
+                    <FormControl type="text" placeholder="Image Alt" value={props.altText} onChange={props.onAltTextChanged}/>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@ YoutubeConvertParams.propTypes = {
 };
 
 
-const mapStateToPros = ({params}) => {
+const mapStateToProps = ({params}) => {
     return {
         altText: params.altText,
         videoTitle: params.videoTitle,
@@ -60,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(YoutubeConvertParams);
+export default connect(mapStateToProps, mapDispatchToProps)(YoutubeConvertParams);

@@ -32,8 +32,9 @@ export const changeAreParamsValid = (areParamsValid) => {
     };
 }
 
-export const extractVideoId = () => {
+export const extractVideoId = (url) => {
     return {
-        type: EXTRACT_VIDEO_ID
+        type: EXTRACT_VIDEO_ID,
+        url: url
     };
 }

@@ -1,59 +1,50 @@
-import React, {Component} from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 
-import Header from '../header/Header'
-import YoutubeConvertParams from '../youtube-convert-params/YoutubeConvertParams'
-import YoutubeConversionResult from '../youtube-conversion-result/YoutubeConversionResult'
-import { getVideoId } from '../../utils/YoutubeUrl'
-import { extractVideoId } from '../../actions'
-import './Converter.css'
+import Header from '../header/Header';
+import YoutubeConvertParams from '../youtube-convert-params/YoutubeConvertParams';
+import YoutubeConversionResult from '../youtube-conversion-result/YoutubeConversionResult';
+import { extractVideoId } from '../../actions';
+import './Converter.css';
 
-class Converter extends Component {
-    constructor(props) {
-        super(props);
-
-        this.convert = this.convert.bind(this);
-
-    }
-
-    convert() {
-        let videoId = getVideoId(this.state.url);
-        let altText = this.state.altText || '';
-        let videoTitle = this.state.videoTitle || '';
-        this.setState({
-            videoId: videoId,
-            urlMarkdown: `[![${altText}](http://img.youtube.com/vi/${videoId}/0.jpg)](http://www.youtube.com/watch?v=${videoId} "${videoTitle}")`
-        });
-    }
-    render() {
-        let footer = this.props.children && (
-            <blockquote className="converter-footer">
-                {this.props.children}
-            </blockquote>
-        );
-        return (
-            <div className="converter">
-                <Header text={this.props.header} className="converter-header" />
-
-                <div className="converter-content container">
-                    <YoutubeConvertParams />
-                    <div className="app-row text-center">
-                        <Button bsStyle="primary" className="btn-raised convert-btn" disabled={!this.props.isUrlValid} onClick={this.convert}>Convert To Markdown</Button>
-                    </div>
-                    <YoutubeConversionResult videoId={this.props.videoId} altText={this.props.altText} videoTitle={this.props.videoTitle}/>
-                    <div>
-                        {footer}
-                    </div>
+const Converter = (props) => {
+    let footer = props.children && (
+        <blockquote className="converter-footer">
+            {props.children}
+        </blockquote>
+    );
+    return (
+        <div className="converter">
+            <Header text={props.header} className="converter-header" />
+            <div className="converter-content container">
+                <YoutubeConvertParams />
+                <div className="app-row text-center">
+                    <Button bsStyle="primary" className="btn-raised convert-btn" disabled={!props.isUrlValid} onClick={() => props.onConvert(props.url)}>Convert To Markdown</Button>
+                </div>
+                <YoutubeConversionResult videoId={props.videoId} altText={props.altText} videoTitle={props.videoTitle}/>
+                <div>
+                    {footer}
                 </div>
             </div>
-            );
-    }
-}
+        </div>
+        );
+};
+
+Converter.propTypes = {
+    videoId: PropTypes.string.isRequired,
+    altText: PropTypes.string.isRequired,
+    videoTitle: PropTypes.string.isRequired,
+    isUrlValid: PropTypes.bool.isRequired,
+    onConvert: PropTypes.func.isRequired,
+};
+
 
 const mapStateToProps = (state) => {
     return {
+        url: state.params.url,
         altText: state.params.altText,
         videoTitle: state.params.videoTitle,
         videoId: state.result.videoId,
@@ -63,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        convert: () => dispatch(extractVideoId())
+        onConvert: (url) => dispatch(extractVideoId(url))
     };
 };
 
