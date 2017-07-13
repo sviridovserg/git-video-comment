@@ -3,7 +3,7 @@ node_js: stable
 sudo: required
 dist: trusty
 install:
-  - npm install npm@latest -g
+  - npm install npm@3.10.9 -g
   - npm install
 script:
   - npm run test
