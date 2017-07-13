@@ -3,7 +3,6 @@ node_js: stable
 sudo: required
 dist: trusty
 install:
-  - npm cache clean
   - npm install npm@latest -g
   - npm install
 script:
